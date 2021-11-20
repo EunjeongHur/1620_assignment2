@@ -24,3 +24,9 @@ function createSingleIndex() {
     const singlecontact = '<div class="contact"><p>${newcontact}</p></div>';
 	return singlecontact
 }
+
+function renderIndex(contact) {
+	const newcontact = document.querySelector('.main')
+	newcontact.innerHTML = `<div class="contact"><p>${contact[0].name}</p></div>`;
+	newcontact.innerHTML += `<div class="contact"><p>${contact[1].name}</p></div>`;
+}
