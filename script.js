@@ -26,7 +26,13 @@ function createSingleIndex() {
 }
 
 function renderIndex(contact) {
-	const newcontact = document.querySelector('.main')
-	newcontact.innerHTML = `<div class="contact"><p>${contact[0].name}</p></div>`;
-	newcontact.innerHTML += `<div class="contact"><p>${contact[1].name}</p></div>`;
+	let newcontact = document.querySelector('.main')
+	for (let elem of contact) {
+		newcontact.innerHTML += `<div class="contact"><p>${elem.name}</p></div>`;
+	}
+}
+
+function cleanUpView() {
+	const viewcards = document.querySelector('.contactinfo') //.contactemail .contactphone .contactaddress .buttons')
+	viewcards.remove()
 }
