@@ -21,14 +21,14 @@ const contactList = [ 
 ]
 
 function createSingleIndex() {
-    const singlecontact = '<div class="contact"><p>${newcontact}</p></div>';
-	return singlecontact
+    const singlecontact = '<div class="contact"><p>${}</p></div>';
+	console.log(singlecontact)
 }
 
 function renderIndex(contact) {
 	let newcontact = document.querySelector('.main')
 	for (let elem of contact) {
-		newcontact.innerHTML += `<div class="contact"><p>${elem.name}</p></div>`;
+		newcontact.innerHTML += `<a href="page3.html"><div class="contact"><p>${elem.name}</p></div></a>`;
 	}
 }
 
