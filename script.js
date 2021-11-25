@@ -20,21 +20,39 @@ const contactList = [ 
 	}
 ]
 
-function createSingleIndex() {
-    const singlecontact = '<div class="contact"><p>${}</p></div>';
-	console.log(singlecontact)
+function createSingleIndex(contact){
+    let name = 'no name provided';
+    if (typeof contact !== 'undefined'){
+        name = contact.name
+    }
+    return `<a href="page3.html"><div class="contact"><p>${name}</p></div></a>`
 }
 
-function renderIndex(contact) {
-	let newcontact = document.querySelector('.main')
-	for (let elem of contact) {
-		newcontact.innerHTML += `<a href="page3.html"><div class="contact"><p>${elem.name}</p></div></a>`;
-	}
+function renderIndex(contactList){
+    for (contact of contactList){
+        const newcontact = document.querySelector('.main');
+        newcontact.innerHTML += createSingleIndex(contact);
+        newcontact.insertAdjacentElement('afterend', newcontact);
+    }
 }
+
+// function createSingleIndex() {
+//     const singlecontact = '<div class="contact"><p>${}</p></div>';
+// 	console.log(singlecontact)
+// }
+
+// function renderIndex(contact) {
+// 	let newcontact = document.querySelector('.main')
+// 	for (let elem of contact) {
+// 		newcontact.innerHTML += `<a href="page3.html"><div class="contact"><p>${elem.name}</p></div></a>`;
+// 	}
+// }
 
 function cleanUpView() {
-	const viewcards = document.querySelector('.contactinfo')
-	viewcards.remove()
+	const viewcards = document.querySelectorAll('.contactinfo')
+    for (const elem of viewcards) {
+        elem.remove();
+    }
 }
 
 function renderView(singlecontact) {
@@ -61,8 +79,10 @@ function renderView(singlecontact) {
 	
 
 function cleanUpCreate() {
-	const createcards = document.querySelector('.contactedit')
-	createcards.remove()
+    const createcards = document.querySelectorAll('.contactedit')
+    for (const elem of createcards) {
+        elem.remove();
+    }
 }
 
 function renderCreate() {
@@ -104,3 +124,28 @@ function renderCreate() {
 
 	document.querySelector('.main').innerHTML = addcontact
 }
+
+const contact_sidebar = document.querySelector('.nav-home')
+const newcontact_sidebar = document.querySelector('.nav')
+
+
+function clear() {
+	cleanUpCreate()
+	cleanUpIndex()
+	cleanUpView()
+}
+
+function clickrenderindex(evt) {
+	evt.preventDefault();
+	clear();
+	renderIndex(contactList);
+}
+
+function clickrendercreate(evt) {
+	evt.preventDefault();
+	clear();
+	renderCreate();
+}
+
+contact_sidebar.addEventListener('click', clickrenderindex)
+newcontact_sidebar.addEventListener('click', clickrendercreate)
