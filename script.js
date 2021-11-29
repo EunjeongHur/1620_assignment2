@@ -17,14 +17,22 @@ const contactList = [ 
 		phone: "123-555-5555",    
 		address: "Portland Oregon",    
 		email: "greenlantern@watchtower.com",  
-	}
+	},
+	{
+		name: "Eunjeong Hur",
+		phone: "778-123-4567",
+		address: "Coquitlam, BC",
+		email: "ahur@my.bcit.ca",
+	},
 ]
 
 function createSingleIndex(contact){
+
     let name = 'no name provided';
     if (typeof contact !== 'undefined'){
         name = contact.name
     }
+
     return `<a href="page3.html"><div class="contact"><p>${name}</p></div></a>`
 }
 
@@ -35,18 +43,6 @@ function renderIndex(contactList){
         newcontact.insertAdjacentElement('afterend', newcontact);
     }
 }
-
-// function createSingleIndex() {
-//     const singlecontact = '<div class="contact"><p>${}</p></div>';
-// 	console.log(singlecontact)
-// }
-
-// function renderIndex(contact) {
-// 	let newcontact = document.querySelector('.main')
-// 	for (let elem of contact) {
-// 		newcontact.innerHTML += `<a href="page3.html"><div class="contact"><p>${elem.name}</p></div></a>`;
-// 	}
-// }
 
 function cleanUpView() {
 	const viewcards = document.querySelectorAll('.contactinfo')
@@ -129,23 +125,22 @@ const contact_sidebar = document.querySelector('.nav-home')
 const newcontact_sidebar = document.querySelector('.nav')
 
 
-function clear() {
-	cleanUpCreate()
-	cleanUpIndex()
-	cleanUpView()
+function clearall() {
+	document.querySelector('.main').innerHTML = '';
 }
 
 function clickrenderindex(evt) {
 	evt.preventDefault();
-	clear();
+	clearall();
 	renderIndex(contactList);
 }
 
 function clickrendercreate(evt) {
 	evt.preventDefault();
-	clear();
+	clearall();
 	renderCreate();
 }
 
 contact_sidebar.addEventListener('click', clickrenderindex)
 newcontact_sidebar.addEventListener('click', clickrendercreate)
+please.addEventListener('click', clickindex_handler)
