@@ -123,7 +123,7 @@ function renderCreate() {
 
 const contact_sidebar = document.querySelector('.nav-home')
 const newcontact_sidebar = document.querySelector('.nav')
-
+const contactview = document.querySelector('.main')
 
 function clearall() {
 	document.querySelector('.main').innerHTML = '';
@@ -141,6 +141,30 @@ function clickrendercreate(evt) {
 	renderCreate();
 }
 
+function clickrenderview(evt) {
+	evt.preventDefault();
+	
+
+	let contact_name;
+	if (evt.target.tagName !== 'P') {
+		return
+	} else {
+		contact_name = evt.target.innerHTML
+	}
+	let clicked_contact;
+	for (let contact of contactList) {
+		if (contact.name === contact_name) {
+			clicked_contact = contact
+		}
+	}
+	if (typeof clicked_contact === 'undefined') {
+		return
+	}
+
+	clearall();
+	renderView(clicked_contact);
+}
+
 contact_sidebar.addEventListener('click', clickrenderindex)
 newcontact_sidebar.addEventListener('click', clickrendercreate)
-please.addEventListener('click', clickindex_handler)
+contactview.addEventListener('click', clickrenderview)
