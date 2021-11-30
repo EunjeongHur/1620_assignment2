@@ -71,8 +71,14 @@ function renderView(singlecontact) {
     </div>
 	`
 	document.querySelector('.main').innerHTML = addsinglecontact
+	document.querySelector('.close').addEventListener('click', rendercontacts)
 }
 	
+function rendercontacts(evt) {
+	evt.preventDefault();
+	clearall();
+	renderIndex(contactList)
+}
 
 function cleanUpCreate() {
     const createcards = document.querySelectorAll('.contactedit')
@@ -119,11 +125,36 @@ function renderCreate() {
 	`;
 
 	document.querySelector('.main').innerHTML = addcontact
+	document.querySelector('.cancel').addEventListener('click', rendercontacts)
+	document.querySelector('.save').addEventListener('click', createcontact)
 }
 
 const contact_sidebar = document.querySelector('.nav-home')
 const newcontact_sidebar = document.querySelector('.nav')
 const contactview = document.querySelector('.main')
+
+function createcontact(evt) {
+	// evt.preventDefault();
+
+	// const username = document.querySelectorAll('.inputcontainer').elements[0].value;
+	
+	// console.log(username)
+	// console.log("hey")
+	// const username = Object.create({}, {
+	// 	getName: {
+	// 		value: function () { return this.${document.querySelector('form').elements[0]};}
+	// 	}
+	// })
+	// username.${document.querySelector('form').elements[0].value} = 1;
+	// console.log(Object.keys(username));
+	var elem_name = document.getElementsByName("contactname").value;
+	console.log(elem_name)
+	// var contact = {}
+	// for(var i = 0 ; i < elements.length ; i++){
+    //     var item = elements.item(i);
+    //     obj[item.name] = item.value;
+    // }
+}
 
 function clearall() {
 	document.querySelector('.main').innerHTML = '';
@@ -144,7 +175,6 @@ function clickrendercreate(evt) {
 function clickrenderview(evt) {
 	evt.preventDefault();
 	
-
 	let contact_name;
 	if (evt.target.tagName !== 'P') {
 		return
@@ -164,6 +194,8 @@ function clickrenderview(evt) {
 	clearall();
 	renderView(clicked_contact);
 }
+
+
 
 contact_sidebar.addEventListener('click', clickrenderindex)
 newcontact_sidebar.addEventListener('click', clickrendercreate)
