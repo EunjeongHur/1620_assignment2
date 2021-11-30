@@ -134,7 +134,7 @@ const newcontact_sidebar = document.querySelector('.nav')
 const contactview = document.querySelector('.main')
 
 function createcontact(evt) {
-	
+
 	const form = document.querySelector('form')
 	const contactname = form[0].value
 	const contactphone = form[2].value
@@ -147,8 +147,13 @@ function createcontact(evt) {
 		address: contactaddress,
 		email:contactemail
 	}
-	console.log(contact_object)
+	
+	contactList.push(contact_object);
+	console.log(contactList)
 
+	clearall();
+	renderView(contact_object)
+	removeEventListener('click', createcontact)
 }
 
 function clearall() {
