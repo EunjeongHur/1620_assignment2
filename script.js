@@ -134,26 +134,21 @@ const newcontact_sidebar = document.querySelector('.nav')
 const contactview = document.querySelector('.main')
 
 function createcontact(evt) {
-	// evt.preventDefault();
-
-	// const username = document.querySelectorAll('.inputcontainer').elements[0].value;
 	
-	// console.log(username)
-	// console.log("hey")
-	// const username = Object.create({}, {
-	// 	getName: {
-	// 		value: function () { return this.${document.querySelector('form').elements[0]};}
-	// 	}
-	// })
-	// username.${document.querySelector('form').elements[0].value} = 1;
-	// console.log(Object.keys(username));
-	var elem_name = document.getElementsByName("contactname").value;
-	console.log(elem_name)
-	// var contact = {}
-	// for(var i = 0 ; i < elements.length ; i++){
-    //     var item = elements.item(i);
-    //     obj[item.name] = item.value;
-    // }
+	const form = document.querySelector('form')
+	const contactname = form[0].value
+	const contactphone = form[2].value
+	const contactaddress = form[4].value
+	const contactemail = form[6].value
+
+	var contact_object = {
+		name: contactname,
+		phone: contactphone,
+		address: contactaddress,
+		email:contactemail
+	}
+	console.log(contact_object)
+
 }
 
 function clearall() {
